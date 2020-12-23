@@ -1,0 +1,49 @@
+    #include <stdio.h>
+    #include <math.h>
+     
+    int ehprimo(int n){
+        int raiz = sqrt(n)*1000000;
+        //printf("raiz - %d\n",raiz);
+        if(n==2)
+            return 1;
+            
+        
+        if( raiz%1000000==0 )//um numero que possui raiz inteira não eh primo
+            return 0;
+              
+        int i=0;    
+        
+        for(i=2;i<=sqrt(n);i++){
+            if(n%i == 0)
+                return 0;
+        }
+      
+        return 1;
+            
+    }
+     
+    int main(){
+        int i,n;
+        int cont=0;
+        scanf("%d", &n);
+        int nimpar = n;
+        
+       /* if(ehprimo(n)==0)
+            printf("%d nao eh primo",n);
+        else
+            printf("%d eh primo", n);*/
+        
+        if(ehprimo(n-2)==1)
+            cont++;
+    
+        for(i=3;i<=n/2;i++){
+            if(ehprimo(i)==1 && ehprimo(n-i)==1){
+                cont++;
+            }
+             i++;
+            
+        }
+        
+        printf("%d", cont);
+        return 0;
+    }
